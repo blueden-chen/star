@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 public class DefaultController {
     @RequestMapping("*")
     public String hello(HttpServletRequest request) {
-        System.out.println(request.getServletPath());
         return "index";
     }
 }

@@ -288,6 +288,7 @@ app.classy.controller({
 		this.$.userSettings = {
 			"active": false
 		};
+
 		this.AuthService.getUser().then((function(_this) {
 			return function(user) {
 				_this.$rootScope.user = user.data;
@@ -988,7 +989,7 @@ app.directive('spinner', function() {
 app.directive('switch', function() {
 	return {
 		restrict: 'E',
-		template: '<div class="switch"><input type="checkbox" id="{{id}}" ng-transclude></input><label for="{{id}}" ng-transclude></label></div>',
+		template: '<div class="switch"><input type="checkbox" id="{{id}}" ng-transclude><label for="{{id}}" ng-transclude></label></div>',
 		replace: true,
 		transclude: true,
 		scope: {
