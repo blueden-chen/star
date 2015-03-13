@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 /**
  * Created by chenwj on 3/10/15.
  */
-public class JsonFactory {
+public class JsonConstructFactory {
 
-    private JsonFactory() {
+    private JsonConstructFactory() {
     }
 
     private static class Holder {

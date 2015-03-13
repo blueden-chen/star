@@ -6,15 +6,12 @@ package net.core.service.oauth2;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.oauth.OAuthService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 服务提供类，通过获取服务配置类中的配置，生成发送给第三方平台的Request
  */
 public class OAuthServiceProvider {
 
-    private final static Logger logger = LoggerFactory.getLogger(OAuthServiceProvider.class);
     private OAuthServiceConfig config;
 
     public OAuthServiceProvider() {

@@ -61,7 +61,7 @@ public class Github2Api extends DefaultApi20 {
 
     @Override
     public OAuthService createService(OAuthConfig config) {
-        return new  GithubOAuth2Service(this, config);
+        return new GithubOAuth2Service(this, config);
     }
 
     private class GithubOAuth2Service extends OAuth20ServiceImpl {
@@ -101,9 +101,7 @@ public class Github2Api extends DefaultApi20 {
                         request.addQuerystringParameter(OAuthConstants.SCOPE, config.getScope());
                     }
             }
-            System.out.println("before.........");
             Response response = request.send();
-            System.out.println("............");
             return api.getAccessTokenExtractor().extract(response.getBody());
         }
     }

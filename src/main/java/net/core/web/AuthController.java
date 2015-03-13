@@ -3,16 +3,12 @@ package net.core.web;
 /**
  * Created by chenwj on 3/9/15.
  */
-/**
- * Created by chenwj on 3/8/15.
- */
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import net.core.service.oauth2.GithubService;
 import net.core.service.oauth2.OAuthServiceProvider;
-import net.core.utils.JsonFactory;
-import org.scribe.model.*;
+import net.core.utils.JsonConstructFactory;
+import org.scribe.model.Response;
+import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,42 +22,54 @@ import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static net.core.common.Constants.USER_URL;
+
 @Controller
 @RequestMapping("/api/auth")
 public class AuthController {
-    private static final String PROTECTED_RESOURCE_URL = "https://api.github.com/user/starred";
 
-    public static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private static final Token EMPTY_TOKEN = null;
+
+    public static final ThreadLocal<GithubService> githubService = new ThreadLocal<>();
 
     @Inject
     private OAuthServiceProvider githubServiceProvider;
-    private static final Token EMPTY_TOKEN = null;
+    private OAuthService service;
 
+    /**
+     * 登陆入口方法
+     *
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public String login() {
-        OAuthService service = githubServiceProvider.getService();
+        logger.debug("login is called");
+
+        service = githubServiceProvider.getService();
         Map map = new HashMap<>();
         map.put("authUrl", service.getAuthorizationUrl(EMPTY_TOKEN));
-        return JsonFactory.getInstance().toJson(map);
+        return JsonConstructFactory.getInstance().toJson(map);
     }
 
+    /**
+     * OAuth认证回调方法
+     *
+     * @param oauthVerifier
+     * @return
+     */
     @RequestMapping(value = "/callback", method = RequestMethod.GET)
     public String callback(@RequestParam(value = "code", required = true) String oauthVerifier) {
-        OAuthService service = githubServiceProvider.getService();
+        logger.debug("callback is called");
 
-        Verifier verifier = new Verifier(oauthVerifier);
-        Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
-        OAuthRequest oauthRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
-        service.signRequest(accessToken, oauthRequest);
-        Response oauthResponse = oauthRequest.send();
-        JsonParser jsonparer = new JsonParser();
-        JsonArray array = jsonparer.parse(oauthResponse.getBody()).getAsJsonArray();
-        System.out.println("before......................");
-        for (JsonElement element : array) {
-            System.out.println(element.getAsJsonObject().get("html_url"));
-        }
-        System.out.println("after.......................");
+        //初始化githubService
+        githubService.set(new GithubService(service, oauthVerifier));
+//        Response oauthResponse = githubService.get().request();
+//        JsonArray array = JsonParserFactory.getInstance().parse(oauthResponse.getBody()).getAsJsonArray();
+//        for (JsonElement element : array) {
+//            System.out.println(element.getAsJsonObject().get("html_url"));
+//        }
 
         return "redirect:/dashboard";
     }
@@ -69,10 +77,11 @@ public class AuthController {
     @RequestMapping(value = "/user")
     @ResponseBody
     public String getUser() {
-        return null;
-
+        Response response = githubService.get().request(USER_URL);
+        return JsonConstructFactory.getInstance().toJson(response.getBody());
     }
 
+    //todo
     @RequestMapping(value = "/logout")
     @ResponseBody
     public String logout() {
