@@ -1,0 +1,276 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+html body {
+    height: 100%;
+    font-family: Microsoft YaHei;
+}
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    height: 100%;
+}
+
+#wrapper.toggled {
+    padding-left: 280px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 280px;
+    width: 0;
+    height: 100%;
+    margin-left: -280px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 280px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -280px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 280px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    color: #fff;
+    height: 60px;
+    font-size: 18px;
+    line-height: 60px;
+    background: #56a07b;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #fff;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+.sidebar-header {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.7rem;
+    font-weight: bold;
+    height: 42px;
+    overflow: hidden;
+    padding: 15px 20px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.08);
+
+}
+.sidebar-header-text {
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    top: -8px;
+    text-indent: -20px;
+}
+.sidebar-header-stars{
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    font-weight: lighter;
+    top: -8px;
+    text-indent: -10px;
+    cursor: pointer;
+}
+.tag-item {
+    color:white;
+    cursor: pointer;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 280px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 280px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.nopadding {
+    padding:0px;
+    margin:0px;
+}
+.bubble {
+    background: rgba(255,255,255,0.1);
+    border-radius: 125px;
+    color: #fff;
+    display: inline-block;
+    float: right;
+    font-size: 0.6rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.3rem 0.7rem;
+    padding-right: 30px;
+    position: relative;
+    top: 11px;
+    margin-right: 10px;
+}
+/*.dashboard-repos {*/
+/*background: #fafafa;*/
+/*/!*overflow-y: auto;*!/*/
+/*width: 420px;*/
+/*}*/
+
+.col-fixed, .readme {
+    float: left;
+
+}
+
+.col-fixed {
+    /*height:100%;*/
+    width: 420px;
+    background: #fafafa;
+    height: 100%;
+    top: 60px;
+    overflow-y: auto;
+    /*position: absolute;*/
+    position: fixed;
+}
+
+.readme {
+    /*width: calc(100% - 420px);*/
+    left: 700px;
+    top: 60px;
+    width: 1203px;
+    height: 100%;
+    position: fixed;
+}
+
+.repo {
+    height:119px;
+    width:402px;
+    border-bottom: 1px solid rgba(55,53,112,0.1);
+    background: #fafafa;
+    border-right: 1px solid rgba(55,53,112,0.1);
+    padding: 0px 15px 20px 15px;
+    cursor: pointer;
+}
+.repo-name{
+    color: #56a07b;
+    font-size: 0.8rem;
+    margin: 0 0 10px 0;
+}
+
+.repo-description{
+    color: #28343d;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+.repo-stats{
+    display: inline-block;
+    margin-right: 12px;
+    font-size: 0.8rem;
+}
+
+.main{
+    height:calc(100% - 60px);
+}
+
+.readme-header {
+    height: 45px;
+    border-bottom: 1px solid rgba(55,53,112,0.1);
+    padding: 8px;
+    position: fixed;
+    width:1203px;
+}
+
+.repo-address {
+    float: right;
+    position: relative;
+    right: 20px;
+    z-index: -1;
+}
+
+.main-nav {
+    height: 60px;
+    border-bottom: 1px solid rgba(55,53,112,0.1);
+    position: fixed;
+    width:1638px;
+}
+.readme-content{
+    top:105px;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
+}
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    pointer-events: none;
+    position: relative;
+}

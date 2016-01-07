@@ -9,19 +9,18 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <context:component-scan base-package="net.core.service"/>
+    <context:component-scan base-package="cwj.service"/>
+    <context:property-placeholder location="classpath:github.properties"/>
 
-    <context:property-placeholder location="classpath:springmvc.properties"/>
-    <bean id="githubServiceConfig" class="net.core.service.oauth2.OAuthServiceConfig">
-
+    <bean id="githubServiceConfig" class="cwj.service.oauth2.OAuthServiceConfig">
         <constructor-arg value="${oauth.github.apikey}"/>
         <constructor-arg value="${oauth.github.apisecret}"/>
         <constructor-arg value="${oauth.github.callback}"/>
         <constructor-arg value="${oauth.github.scope}"/>
-        <constructor-arg value="net.core.service.oauth2.Github2Api"/>
+        <constructor-arg value="cwj.service.oauth2.Github2Api"/>
     </bean>
 
-    <bean id="githubServiceProvider" class="net.core.service.oauth2.OAuthServiceProvider">
+    <bean id="githubServiceProvider" class="cwj.service.oauth2.OAuthServiceProvider">
         <constructor-arg name="config" ref="githubServiceConfig"/>
     </bean>
 </beans>

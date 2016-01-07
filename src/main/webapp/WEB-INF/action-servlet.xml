@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-    <context:component-scan base-package="net.core.web"/>
+    <context:component-scan base-package="cwj.controller"/>
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
 
@@ -24,4 +24,5 @@
             <value>.html</value>
         </property>
     </bean>
+
 </beans>
