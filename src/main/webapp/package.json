@@ -1,0 +1,16 @@
+{
+  "name": "mystar",
+  "version": "0.2",
+  "description": "practice",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "bootstrap":"3.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
