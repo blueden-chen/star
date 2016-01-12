@@ -245,6 +245,7 @@ html body {
     padding: 8px;
     position: fixed;
     width:1203px;
+    z-index:-1;
 }
 
 .repo-address {
